@@ -60,7 +60,7 @@ URL: https://code.google.com/p/io-2012-slides
       <div class="large-spacer">
         <div class="aa">
  　　　､､┯､､<br>
-　　 ﾐ (･)(･)ﾐ　　<span class="reset-font">本スライドは<a href="http://y-yammt.github.io/intro-cond-prob">http://y-yammt.github.io/intro-cond-prob</a> で見られますぞ、と</span><br>
+　　 ﾐ (･)(･)ﾐ　　<span class="reset-font">本スライドは<a href="http://y-yammt.github.io/intro-bayes-social-risks">http://y-yammt.github.io/intro-bayes-social-risks</a> で見られますぞ、と</span><br>
 　　彡　д　ミ<br>
 　　彡　　/￣￣￣￣/<br>
 ＿彡ﾆつ/　 Macc　/＿＿<br>
@@ -76,446 +76,523 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul class="build">
-        <li>「ベイズの定理」の前準備として、条件付き確率をおさらいしましょう。</li>
-        <li>「<a href="http://www.amazon.co.jp/dp/4489006209">すぐわかる確率・統計</a>」の1.2「確率」に大体対応しています。
+        <li>入門ベイズ統計 第3章「社会的リスクと決定」を見ていきます。</li>
+        <ul>
+          <!--
+          <li>ベイズ更新の復習</li>
+          -->
+          <li>3.1 リスク認知とベイズの定理</li>
+          <li>3.2 安全性のモデル</li>
+          <li>3.3 確信の形成のようす</li>
+          <li><span class="gray-out">3.4 決定の正しさと到達時間</span> &rarr; 省略します</li>
+        </ul>
       </ul>
+    </article>
+  </slide>
+  
+  <!--
+  <slide>
+    <article class="flexbox vleft">
+      <h2>ベイズ更新の復習</h2>
+    </article>
+  </slide>
+  -->
+
+  <slide>
+    <article class="flexbox vleft">
+      <h2>3.1 リスク認知とベイズの定理</h2>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>確率の復習</h2>
+      <h2>リスクとは?</h2>
     </hgroup>
     <article>
       <dl>
-      <dt class="mid-spacer"><span class="color-teacher">先生</span>
-      <dd>問題を出すわよ。「サイコロを1個投げたとき、1の目が出る確率を求めなさい」。どう?</dd>
-      <dt class="mid-spacer"><span class="color-ken">ケン</span></dt>
-      <dd>1〜6の6通りあるサイコロの目の中で、「1の目」は1つだけだから、答は$\frac{1}{6}$。</dd>
-      <dt class="mid-spacer"><span class="color-teacher">先生</span></dt>
-      <dd>そう、答は$\frac{1}{6}$。大切なのは、「<span class="teacher">対象の部分が起こる場合の数を、全体が起こる場合の数で割った値</span>」というイメージよ。</dd>
-      <dt class="mid-spacer"><span class="color-teacher">先生</span></dt>
-      <dd>基本はこれだけ。これが「<span class="color-teacher">確率の定義</span>」。</dd>
+      <dt class="mid-spacer">リスク</dt>
+      <dd>自然現象でも社会現象でも望ましくない結果が起こる<strong>「不確実性」</strong></dd>
       </dl>
-      <ul class="build large-spacer">
-        <li>さすがに定義が雑なので、もう少し細かく定めることにしましょう。</li>
+      <div class="large-spacer">
+      <div class="frame-border">
+      <span>リスクの2つの側面</span>
+      <ul class="mid-spacer build">
+        <li>どのくらいの頻度で起きるかという確率的な側面</li>
+        <li>起こったときの重大性という側面</li>
       </ul>
-      <footer class="source">『<a href="http://www.amazon.co.jp/dp/4797366575">図解・ベイズ統計「超」入門</a>』(p. 28)を一部編集。いい本だと思いますよ。</footer>
+      </div>
+      </div>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>確率の復習</h2>
+      <h2>リスクとは?</h2>
     </hgroup>
     <article>
       <dl>
-      <dt class="mid-spacer">試行</dt>
-      <dd>一定の条件のもとで何回でも繰り返すことができる実験や観察(例: サイコロを1回振る)。</dd>
-      <dt class="mid-spacer">事象</dt>
-      <dd>試行を行った結果生じる現象(例: 偶数の目が出る)。</dd>
-      <dt class="mid-spacer">根元事象</dt>
-      <dd>ある事象において、もうこれ以上分けることができない事象(2の目が出る、<del>偶数の目が出る</del> &rarr; これは事象)。</dd>
-      <dt class="mid-spacer">標本空間</dt>
-      <dd>根元事象を全部集めてきたもの($\{1,2,3,4,5,6\}$)。</dd>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>確率の復習</h2>
-    </hgroup>
-    <article>
-      <blockquote>
-        有限な標本空間$U$をもつ試行について、どの根元事象も同様に確からしく起こるとする。この試行の事象$A$について、<br>
-        $P(A) = \frac{n(A)}{n(U)}$<br>
-        を事象$A$の<strong>数学的確率</strong>と呼ぶ。
-      </blockquote>
-      <ul class="build large-spacer">
-        <li>統計的確率、公理論的確率については省略します。</li>
+      <dt class="mid-spacer">リスク</dt>
+      <dd>自然現象でも社会現象でも望ましくない結果が起こる<strong>「不確実性」</strong></dd>
+      </dl>
+      <div class="large-spacer">
+      <div class="frame-border">
+      <span>リスクの2つの側面</span>
+      <ul class="mid-spacer">
+        <li><span class="red">どのくらいの頻度で起きるかという確率的な側面</span> &larr; こちらを取り扱う</li>
+        <li><span class="gray-out">起こったときの重大性という側面</span></li>
       </ul>
+      </div>
+      </div>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>簡単な練習問題 その1</h2>
-    </hgroup>
-    <article>
-      <blockquote>
-        サイコロを1回振るとき、出る目が素数である確率を求めよう。
-      </blockquote>
-      <ul class="build large-spacer">
-        <li>標本空間は$U=\{1,2,3,4,5,6\}$</li>
-        <li>事象$A$を出る目が素数とすると$A=\{2,3,5\}$</li>
-        <li>よって、$P(A)=\frac{n(A)}{n(U)}=\frac{3}{6}=\frac{1}{2}$
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>確率の公理</h2>
+      <h2>リスク理論での確率</h2>
     </hgroup>
     <article>
       <ul>
-        <li>数学的確率は以下の確率の公理を満たしていることに注意しましょう。</li>
+        <li>人間の主観(社会的・心理的に感じる)確率として表す。</li>
         <ul>
-          <li>標本空間$\Omega$の部分集合である事象$E$に対し、$P(E) \geq 0$</li>
-          <li>$P(\Omega) = 1$</li>
-          <li>事象$E_1$と$E_2$が互いに排反($E_1 \cap E_2 = \phi$)ならば$P(E_1 \cup E_2) = P(E_1) + P(E_2)$</li>
-        </ul>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>で、ようやく条件付き確率</h2>
-    </hgroup>
-    <article>
-      <blockquote>
-      事象$E$が起こったという条件のもとで事象$B$が起こるという事象を$B|A$と書くとき、確率$P(B|A)$を、<br>
-      $P(B|A) =\frac{P(A \cap B)}{P(A)}$<br>
-      で定義し、$A$のもとでの$B$の条件付き確率という。
-      </blockquote>
-      <ul class="build large-spacer">
-        <li>※ <span class="red">$A$が起こったもとで、条件$B$ <strong>も</strong> 起きる確率</span>と書いたほうがわかりやすいかも。</li>
-        <li>※ <span class="red">$P(A \cap B) = P(B|A) P(A)$</span> の形でもよく使われる。</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>条件付き確率の説明</h2>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>標本空間$U$が有限集合の場合についての説明</li>
-        <ul class="build">
-          <li>$P(B|A) = \frac{n(A \cap B)}{n(A)}$</li>
-          <li>分母と分子を$n(U)$で割ると、</li>
-          <li>$P(B|A) = \frac{\frac{n(A \cap B)}{n(U)}}{\frac{n(A)}{n(U)}} = \frac{P(A \cap B)}{P(A)}$となり条件付き確率の定義と合致していることがわかる。</li>
-        </ul>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>条件付き確率の練習問題</h2>
-      <h3>入門ベイズ統計 例: 壺のモデル</h3>
-    </hgroup>
-    <ul class="build">
-      <li>2つの壺がある。</li>
-      <ul class="build">
-        <li>第1の壺には赤球が1個、白玉が2個</li>
-        <li>第2の壺には赤球が2個、白玉が1個</li>
-      </ul>
-      <li>いずれかの壺から1個玉を取り出したところ白玉であった。</li>
-      <li class="large-spacer"><span class="blue">どちらの壺が選ばれたのだろうか?</span></li>
-    </ul>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>条件付き確率の練習問題</h2>
-      <h3>入門ベイズ統計 例: 壺のモデル</h3>
-    </hgroup>
-    <ul class="build">
-      <li>第1の壺から玉を取り出す事象を$H_1$、第2の壺から玉を取り出す事象を$H_2$とおく。</li>
-      <li>壺の選び方については(情報がないため)等しい確率であると考え、$P(H_1) = P(H_2) = \frac{1}{2}$。</li>
-      <li>白玉が取り出される事象を$A$とおくと、</li>
-      <li class="large-spacer">$P(H_1|A) = \frac{P(H_1 \cap A)}{P(A)} = \frac{P(H_1 \cap A)}{P( (A \cap H_1) \cup (A \cap H_2))} = \frac{P(A \cap H_1)}{P(A \cap H_1) + P(A \cap H_2)} = ...$</li>
-      <li class="large-spacer">$P(H_2|A) = \frac{P(H_2 \cap A)}{P(A)} = \frac{P(H_2 \cap A)}{P( (A \cap H_1) \cup (A \cap H_2))} = \frac{P(A \cap H_2)}{P(A \cap H_1) + P(A \cap H_2)} = ...$</li>
-      <li class="large-spacer">※ $P(H_1 \cap A) = P(H_1) P(A | H_1)$のように書いてひたすら解いていきます。</li>
-    </ul>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>余談</h2>
-    </hgroup>
-    <article>
-      <dl>
-      <dt class="mid-spacer"><span class="color-bro">兄</span></dt>
-      <dd>日本の入門的な統計学の授業では、ベイズ統計はほとんど取り上げていないからな。</dd>
-      <dt class="mid-spacer"><span class="color-aya">アヤ</span></dt>
-      <dd>難しいってことかな?</dd>
-      <dt class="mid-spacer"><span class="color-bro">兄</span></dt>
-      <dd>そんなことはないよ。<span class="color-green-tea"><strong>確率を素直に解釈すれば理解できるよ。</strong></span></dd>
-      </dl>
-      <div class="build">
-        <div class="large-spacer">
-          <blockquote class="aa">
-　　,ﾞ　 /| 　 |　　　.:::|. ＼|:.:.:.:| 　 |::l::|/:.:.:.:.:.:ｊ／::<br>
-　　!　,'　!　 ::|　 　 ::::|!. ,ｨ|≧ゝl､_.;|::ｨ|/_:._／ｨllヘ　　　　┏━┓　 　┏┓ ┏┓　 ┏┓　 ┏┳┓　 　 　 　 ┏┓┏┓┏┓<br>
-　　ｌ ,'　│　::|:..　　::::|く/ {ひlll|::|ヾ|:.N:.::´〃ひlllﾘ::　　　 ┗━┛　 　┃┃ ┃┃┏┛┗┓┗┻┛　 　 　 　 ┃┃┃┃┃┃<br>
-　　ヾ　　'､　 |＼　 ::::|:.＼＼こｿ:.:.:.:.:.:.:.:.:.:､､＼こｿ 　 ┏━━━┓┏┻┻┛┫┗┓┏╋━━┓┏┳┓　 ┃┃┃┃┃┃<br>
-　　　 　 　'､ :|　 ＼ :::＼:.:._,､__彡　_'　-─ ､`ﾞー=　　┗━━┓┃┗━┳　 ┃　 ┃┃┗━━┛┃┃┣┓┃┃┃┃┃┃<br>
-　　　　　　　ヾ､／.::＞:､:;ヽ､__　 /ｰｧ''"´￣ ヽ　　　　　　　　 ┃┃　 　 ┃┏┛　 ┃┃┏┓　 　 ┗┻┫┃┗┛┗┛┗┛<br>
-　　　　　　　／ .::::::::::::::::ﾍ￣ 　 {|::/ 　 　 　　}　　 　 　 ┏━┛┃　 　 ┃┗┓　 ┃┃┃┗━┓　 ┏┛┃┏┓┏┓┏┓<br>
-　 　　 　 ／...::::::::::::::::::::::::::＼　　V　　　　　　ｊ}.　　　 　 ┗━━┛　 　 ┗━┛　 ┗┛┗━━┛　 ┗━┛┗┛┗┛┗┛
-          </blockquote>
+          <li>実際に現象が起こった頻度では必ずしもない。</li>
           <ul>
-            <li>...とまでは言いませんが、結構難しいですよね。</li>
-            <ul>
-              <li>『<a href="http://www.amazon.co.jp/dp/4797366575">図解・ベイズ統計「超」入門</a>』見てイメージを掴むとか...</li>
-              <li>問題解いて慣れていくしかないのか...</li>
-           </ul>
+            <li>&rarr; 頻度論的よりはベイズより。</li>
+            <li>&rarr; ベイズの定理の利用。</li>
           </ul>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <article class="flexbox vleft">
+      <h2>3.2 安全性のモデル</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>安全性のモデル</h2>
+    </hgroup>
+    <article>
+      <div class="build">
+        <div class="frame-border">
+          ひとことで言うと、「対象」が「主体」に与える「信号」をもとにして、主体が対象の「状態」をどのように解釈するかをモデル化する。
         </div>
+        <dl>
+          <dt class="mid-spacer">対象</dt>
+          <dd>リスクの源泉となっているもの (例: 原子力発電所)</dd>
+          <dt class="mid-spacer">主体</dt>
+          <dd>リスクを認知し意思決定するもの (例: 人間)</dd>
+          <dt class="mid-spacer">信号</dt>
+          <dd>対象に置いて生起する現象 (例: 事故が発生する/しない)</dd>
+        </dl>
+        <div style="margin-top:20px;text-align:center;">
+          <img src="images/sig_target.png" style="height:150px;width=auto;" alt="対象と信号">
+       </div>
       </div>
+      <footer class="source">p.46 図3.1より引用</footer>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>モンティ・ホール問題</h2>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>プレーヤーの前に3つのドアがある。</li>
-        <ul class="build">
-          <li>1つのドアの後ろには景品の新車ある。</li>
-          <li>残り2つのドアの後ろには、はずれを意味するヤギがいる。</li>
-        </ul>
-        <li>プレーヤーが1つのドアを選択した後、司会者モンティは<strong>必ず</strong>残りのドアのうちヤギがいるドアを開けてヤギを見せる。</li>
-        <li>ここでプレーヤーは、最初に選んだドアを、残っている開けられていないドアに変更してもよいといわれる。<span class="blue">プレーヤーはドアを変更すべきだろうか?</span></li>
-      </ul>
-      <div class="align-center">
-        <img src="images/Monty_open_door.svg" alt="Monty_open_door" />
-      </div>
-      <footer class="source">このページのスライドは、ウィキペディアの<a href="http://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%83%86%E3%82%A3%E3%83%BB%E3%83%9B%E3%83%BC%E3%83%AB%E5%95%8F%E9%A1%8C">モンティ・ホール問題</a>の記事を再編集したものであり、<a href="http://ja.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">クリエイティブ・コモンズ 表示-継承ライセンス</a>の下で利用可能です。また画像はパブリック・ドメインで利用可能です。詳しくは<a href="http://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%83%86%E3%82%A3%E3%83%BB%E3%83%9B%E3%83%BC%E3%83%AB%E5%95%8F%E9%A1%8C#mediaviewer/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB:Monty_open_door.svg">画像ソース</a>を参照ください。</footer>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>ドアを変えるべきか、変えないべきか?</h2>
-      <!--
-      <h3>モンティ・ホール問題のつづき</h3>
-      -->
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>多くの人 &rarr; はずれのドア見せられても (´・ω・｀)</li>
-        <ul class="build">
-          <li>初志貫徹で変えない人が多いらしい(<a href="http://www.amazon.co.jp/dp/4621100106">数学×思考=ざっくりと いかにして問題をとくか</a>にそんなことが書かれていた)。</li>
-        </ul>
-        <li><strong>あくまでもシミュレーション意味ではあるが</strong>、プログラムを書けば答えはわかる。</li>
-        <ul class="build">
-          <li>バグが出ると悲惨だが・・・</li>
-        </ul>
-      </ul>
-   </article>
-  </slide>
-
-  <slide id="montysim">
-    <hgroup>
-      <h2>やってみた</h2>
-      <!--
-      <h3>モンティ・ホール問題のつづき</h3>
-      -->
-    </hgroup>
-    <article>
-      <p> 
-        <div>
-          <input id="montytrials" type="range" value="1000" min="1000" max="100000" step="1000" />
-          <span id="montydisp">1000</span><span> 回</span>
-          <button type="button" id="montyexec">実行</button>
-        </div>
-        <table>
-          <tr>
-            <th></th><th>新車をもらった回数</th><th>ヤギをもらった回数</th><th>箱を変えない or 変える方針のもとで<br>新車がもらえる確率</th>
-          </tr>
-          <tr>
-            <td>箱を変えない戦略</td><td id="montyNcCars"></td><td id="montyNcGoats"></td><td id="montyNcProb"></td>
-          </tr>
-          <tr>
-            <td>箱を変える戦略</td><td id="montyDcCars"></td><td id="montyDcGoats"></td><td id="montyDcProb"></td>
-          </tr>
-        </table>
-      </p>
-      <ul class="build">
-        <li>箱を変えたときのほうが新車がもらえる確率が倍になっている?</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h3>コードとしてはこんな感じ</h3>
-    </hgroup>
-    <article>
-      <pre class="prettyprint" data-lang="javascript">
-          var ncCars, ncGoats, dcCars, dcGoats = 0;
-          var mt = new MersenneTwister();
-          for (var i = 0; i &lt; trials; ++i) {
-            var answer = [false, false, false];
-            answer[mt.nextInt(0, 3)] = true;
-            var chosen = mt.nextInt(0, 3);
-            // non-change policy
-            if (answer[chosen]) ++ncCars; else ++ncGoats;
-            // do-change policy
-            if (answer[chosen]) ++dcGoats; else ++dcCars;
-          }
-          var ncProb = ncCars / (ncCars + ncGoats);
-          var dcPorb = dcCars / (dcCars + dcGoats);
-      </pre>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>詳しく見てみる</h2>
-      <h3>箱を変えない戦略</h3>
-    </hgroup>
-    <article>
-      <pre class="prettyprint" data-lang="javascript">
-          var ncCars, ncGoats, dcCars, dcGoats = 0;
-          var mt = new MersenneTwister();
-          for (var i = 0; i &lt; trials; ++i) {
-            ...
-            // non-change policy
-            if (answer[chosen]) ++ncCars; else ++ncGoats;
-          }
-      </pre>
-      <ul>
-        <li>最初に車の場所を言い当てたら箱を変えるとヤギを引き当ててしまう。</li>
-        <li>でも無情報で当たりの箱を言い当てる可能性は低い。</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>詳しく見てみる</h2>
-      <h3>箱を変える戦略</h3>
-    </hgroup>
-    <article>
-      <pre class="prettyprint" data-lang="javascript">
-          var ncCars, ncGoats, dcCars, dcGoats = 0;
-          var mt = new MersenneTwister();
-          for (var i = 0; i &lt; trials; ++i) {
-            ...
-            // do-change policy
-            if (answer[chosen]) ++dcGoats; else ++dcCars;
-          }
-      </pre>
-      <ul>
-        <li>最初に間違えてヤギの場所を言い当てるとドアを変えたあとは車があるドアが開かれる。</li>
-        <li>そして最初に車よりもヤギを引き当てる可能性のほうが高い。</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>確率的には?<h2>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>何を事象として表すか?</li>
-        <ul>
-          <li>最初に選択したドアの後ろに何があるか</li>
-          <li>(「必ず箱を変える戦略を取る」か「必ず箱を変えない戦略を取る」か) &larr; これは入れるとわかりやすいかも</li>
-          <li>最後に開かれた扉に何があるか</li>
-        </ul>
-        <li>$H$: 最初に選択したドアの後ろに車があるという事象 (反対は $H^C$)</li>
-        <ul>
-          <li>$P(H) = \frac{1}{3}$, $P(H^C) = \frac{2}{3}$</li>
-        </ul>
-        <li>$F$: 最後に開かれたドアの後ろに車があるという事象 (反対は $F^C$)</li>
-        <ul>
-          <li>$P(F) = ?$, $P(F^C) = ?$</li>
-        </ul>
-         <li class="red">$P(F)$ を求めたい</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>必ずドアを変えるとしたら...</h2>
-    </hgroup>
-    <article>
-      <ul>
-        <li>$H$: 最初に選択したドアの後ろに車があるという事象 (反対は $H^C$)</li>
-        <li>$F$: 最後に開かれたドアの後ろに車があるという事象 (反対は $F^C$)</li>
-      </ul>
-      <ul class="build">
-        <li>$P(F) = P(F,H) + P(F,H^C) = P(F|H)P(H) + P(F|H^C)P(H^C)$</li>
-        <ul class="build">
-          <li>必ずドアを変えるので、最初に車があるドアを言い当てると最終的に車を逃す。つまり、$P(F|H)=0$。</li>
-          <li>同様に、$P(F|H^C)$ = 1</li>
-        </ul>
-        <li>$P(F) = 0 \times \frac{1}{3} + 1 \times \frac{2}{3} = \frac{2}{3}$
-        <li>$P(F^C) = 1 - P(F) = \frac{1}{3}$
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>必ずドアを変えないとしたら...</h2>
-    </hgroup>
-    <article>
-      <ul>
-        <li>$H$: 最初に選択したドアの後ろに車があるという事象 (反対は $H^C$)</li>
-        <li>$F$: 最後に開かれたドアの後ろに車があるという事象 (反対は $F^C$)</li>
-      </ul>
-      <ul>
-        <li>$P(F) = P(F,H) + P(F,H^C) = P(F|H)P(H) + P(F|H^C)P(H^C)$</li>
-        <ul>
-          <li>ドアを変えないので、最初に車があるドアを言い当てると必ず車がもらえる。つまり、$P(F|H)=1$。</li>
-          <li>同様に、$P(F|H^C)$ = 0</li>
-        </ul>
-        <li>$P(F) = 1 \times \frac{1}{3} + 0 \times \frac{2}{3} = \frac{1}{3}$
-        <li>$P(F^C) = 1 - P(F) = \frac{2}{3}$
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>モンティ・ホール問題の結果まとめ</h2>
+      <h2>安全性のモデル</h2>
+      <h3>原子力発電所の例</h3>
     </hgroup>
     <article>
       <table>
         <tr>
-          <th></th><th>新車がもらえる確率</th><th>ヤギがもらえる確率</th>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th>$z_1$: 無事故</th><th>$z_2$: 事故</th>
         </tr>
         <tr>
-          <td>箱を変えない戦略</td><td>$\frac{1}{3}$</td><td>$\frac{2}{3}$</td>
+          <td>$\theta_1$: 安全</td><td>$p(z_1 | \theta_1) = 999/1000$</td><td>$p(z_2 | \theta_1) = 1/1000$</td>
         </tr>
         <tr>
-          <td>箱を変える戦略</td><td>$\frac{2}{3}$</td><td>$\frac{1}{3}$</td>
+          <td>$\theta_2$: 危険</td><td>$p(z_1 | \theta_2) = 1/2$</td><td>$p(z_2 | \theta_2) = 1/2$</td>
         </tr>
       </table>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>安全性のモデル</h2>
+      <h3>原子力発電所の例</h3>
+    </hgroup>
+    <article>
+      <table class="table-collapse">
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th class="em-border-b">$z_1$: 無事故</th><th>$z_2$: 事故</th>
+        </tr>
+        <tr>
+          <td>$\theta_1$: 安全</td><td class="em-border-tb">$p(z_1 | \theta_1) = 999/1000$</td><td>$p(z_2 | \theta_1) = 1/1000$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$: 危険</td><td class="em-border-t">$p(z_1 | \theta_2) = 1/2$</td><td>$p(z_2 | \theta_2) = 1/2$</td>
+        </tr>
+      </table>
+      <dl class="large-spacer">
+        <dt>信号</dt>
+        <dd>対象に置いて生起する現象 &rarr; 対象が観測できる</dd>
+      </dl>
+   </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>安全性のモデル</h2>
+      <h3>原子力発電所の例</h3>
+    </hgroup>
+    <article>
+      <table class="table-collapse">
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th>$z_1$: 無事故</th><th>$z_2$: 事故</th>
+        </tr>
+        <tr>
+          <td class="em-border-r">$\theta_1$: 安全</td><td class="em-border-rl">$p(z_1 | \theta_1) = 999/1000$</td><td class="em-border-l">$p(z_2 | \theta_1) = 1/1000$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$: 危険</td><td>$p(z_1 | \theta_2) = 1/2$</td><td>$p(z_2 | \theta_2) = 1/2$</td>
+        </tr>
+      </table>
+      <dl class="large-spacer">
+        <dt>状態</dt>
+        <dd>対象のもつ属性で主体の関心となっているもの<br>&rarr; 主体がどのように認知しているかであって観測できるものではない。</dd>
+        <dt class="mid-spacer">確率: $p(z_1 | \theta_1)$、$p(z_2 | \theta_1)$</dt>
+        <dd>状態ごとに生起しうる信号の可能性の程度<br>&rarr; 客観的・物理的な性質の把握で理解できる確率である。</dd>
+      </dl>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>安全性のモデル</h2>
+      <h3>原子力発電所の例</h3>
+    </hgroup>
+    <article>
+      <table class="table-collapse">
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th class="em-border-b">$z_1$: 無事故</th><th>$z_2$: 事故</th>
+        </tr>
+        <tr>
+          <td>$\theta_1$: 安全</td><td class="em-border-tb">$p(z_1 | \theta_1) = 999/1000$</td><td>$p(z_2 | \theta_1) = 1/1000$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$: 危険</td><td class="em-border-t">$p(z_1 | \theta_2) = 1/2$</td><td>$p(z_2 | \theta_2) = 1/2$</td>
+        </tr>
+      </table>
+      <div class="build">
+        <dl class="large-spacer">
+          <dt>情報量</dt>
+          <dd>各信号を得た場合にこれを生ぜしめた状態の確率の比</dd>
+        </dl>
+        <ul class="mid-spacer">
+          <li>信号「無事故」を受け取った場合: $\log \frac{999 / 1000}{1 / 2} \simeq 0.3010$</li>
+          <li>信号「事故」を受け取った場合: $\log \frac{1 / 1000}{1 / 2} = - 2.6990$</li>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>情報量の解釈</h2>
+    </hgroup>
+    <article>
       <ul class="build">
-        <li>ちなみにモンティさんがどのドアの後ろに車があるかを知らない場合(途中で終了がありえる場合)は、プレーヤーが箱を変えても変えなくても確率は変わりません。</li>
+        <li>3.4の「情報量とロジスティック曲線」でも情報量の説明が出てきますが、先に取り上げておきます(「入門ベイズ統計」とちょっと異なる切り口で説明します)。</li>
+        <li class="large-spacer">$z_2$、つまり、無事故であるという信号を受け取った場合を考える($z_2$も同様にできる)。</li>
+        <li>このとき、無事故の条件下で状態が安全である確率$w(\theta_1 | z_1)$はベイズの定理より、</li>
+        <div>
+          $w'(\theta_1 | z_1) = \frac{w(\theta_1) p(z_1 | \theta_1)}{w(\theta_1) p(z_1 | \theta_1) + w(\theta_2) p(z_1 | \theta_2)}$
+        </div>
+        <li class="mid-spacer">同様に無事故の条件下で状態が危険である確率$w(\theta_2 | z_1)$は、</li>
+        <div>
+          $w'(\theta_2 | z_1) = \frac{w(\theta_2) p(z_1 | \theta_2)}{w(\theta_1) p(z_1 | \theta_1) + w(\theta_2) p(z_1 | \theta_2)}$
+        </div>
+     </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>情報量の解釈</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+      <li>状態を決定付けるためには信号を受け取った下での(推察される)2つの状態の確度に大きさ差があるのが望ましい。</li>
+      <li>つまり、これらの<span class="red">自己情報量の絶対値の差が大きければよい</span>。ここで自己情報量の差を以下のように表す。</li>
+      <div>
+        <div>
+        $- \log w'(\theta_2 | z_1) - (- \log w'(\theta_1 | z_1)) = \log \frac{w(\theta_1) p(z_1 | \theta_1)}{w(\theta_2) p(z_1 | \theta_2)}$
+        </div>
+        <div class="my-note">
+        ※ 自己情報量は $- \log (\text{確率})$ で表されます(特に $\log$ の底が2の場合の単位をビットといいます)。
+        </div>
+      </div>
+      <li class="mid-spacer">$\frac{w(\theta_1)}{w(\theta_2)}$ は信号を受け取る前から決まっている値なので定数と置くと、</li>
+      <div>
+        $- \log w'(\theta_2 | z_1) - (- \log w'(\theta_1 | z_1)) = \log \frac{p(z_1 | \theta_1)}{p(z_1 | \theta_2)} + const.$
+      </div>
+      <li>右辺第1項は入門ベイズ統計に載っている情報量である。つまり、この情報量の<span class="red">絶対値の大きさが信号を受け取った下での状態の確度への影響度を表す</span>。</li>
       </ul>
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>安全性のモデル</h2>
+      <h3>原子力発電所の例</h3>
+    </hgroup>
+    <article>
+      <table class="table-collapse">
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th class="em-border-b">$z_1$: 無事故</th><th>$z_2$: 事故</th>
+        </tr>
+        <tr>
+          <td>$\theta_1$: 安全</td><td class="em-border-tb">$p(z_1 | \theta_1) = 999/1000$</td><td>$p(z_2 | \theta_1) = 1/1000$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$: 危険</td><td class="em-border-t">$p(z_1 | \theta_2) = 1/2$</td><td>$p(z_2 | \theta_2) = 1/2$</td>
+        </tr>
+      </table>
+      <ul class="mid-spacer">
+        <li>信号「無事故」を受け取った場合の情報量: $\log \frac{999 / 1000}{1 / 2} \simeq 0.3010$</li>
+        <li>信号「事故」を受け取った場合の情報量: $\log \frac{1 / 1000}{1 / 2} = - 2.6990$</li>
+        <ul>
+          <li>正常に運転していることはあまり情報を与えないが、<span class="red">事故が起こることで高い識別力をもつ</span>ことになる。</li>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <article class="flexbox vleft">
+      <h2>3.3 確信の形成のようす</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ヒツジ飼いの少年とオオカミ</h2>
+    </hgroup>
+    <div class="build">
+      <ul class="large-spacer">
+        <li>(イソップ童話より)</li>
+      </ul>
+      <ul>
+        <li>羊飼いは狼がやってきたと村人に助けを求めるという悪戯を繰り返していた。</li>
+        <li>あるとき、実際に狼たちがやってきた。助けを呼ぶ羊飼い、狂言だと信じて気にもかけない村人。このとき、羊飼いに襲った悲劇とは?</li>
+      </ul>
+      <ol class="build frame-border">
+        <li>1. 飼っていた羊が狼に引き裂かれ、羊の群れを失ってしまう。</li>
+        <li>2. 羊飼いが狼に食いちぎられる。</li>
+      </ol>
+      <ul class="large-spacer">
+        <li>原典は 1. とのこと。2. は翻訳版のオリジナル。</li>
+        <li>詳しい解説は <a href="http://aesopus.web.fc2.com/CryWolf/fairy.html">http://aesopus.web.fc2.com/CryWolf/fairy.html</a> を参照してください。</li>
+      </ul>
+    </div>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>「羊飼の少年とオオカミ」の話の確率構造</h2>
+    </hgroup>
+    <article>
+      <table>
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th>$z_1$: オオカミが来ると言って<br>実際に来た</th><th>$z_2$: オオカミが来ると言って<br>来なかった</th>
+        </tr>
+        <tr>
+          <td>$\theta_1$: 少年はウソツキ</td><td>$p(z_1 | \theta_1) = 1/3$</td><td>$p(z_2 | \theta_1) = 2/3$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$: 少年は正直</td><td>$p(z_1 | \theta_2) = 3/4$</td><td>$p(z_2 | \theta_2) = 1/4$</td>
+        </tr>
+      </table>
+      <div class="build large-spacer">
+        <ul>
+          <li>実際にオオカミが来た場合の情報量: $\log \frac{1/3}{3/4} = - 0.3522$</li>
+          <li>オオカミが来なかった場合の情報量: $\log \frac{2/3}{1/4} =   0.4259$</li>
+          <ul>
+            <li>オオカミが来ないときのほうが来たときより若干高く、村人がよく学習する。</li>
+          </ul>
+        </ul>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>信号の確率 (一般的な形)</h2>
+    </hgroup>
+    <article>
+      <table>
+        <tr>
+          <th>状態 &#92; 信号<br>(原因) &#92; (結果)</th><th>$z_1$</th><th>$z_2$</th>
+        </tr>
+        <tr>
+          <td>$\theta_1$</td><td>$p(z_1 | \theta_1) = p_{11}$</td><td>$p(z_2 | \theta_1) = p_{12}$</td>
+        </tr>
+        <tr>
+          <td>$\theta_2$</td><td>$p(z_1 | \theta_2) = p_{22}$</td><td>$p(z_2 | \theta_2) = p_{22}$</td>
+        </tr>
+      </table>
+      <ul class="large-spacer">
+        <li>$w^{(n)}$: 第$n$期の、状態$\theta_1$に対する確信(確率)<br>&rarr; $w^{(n)}(\theta_1)$と書いたほうがわかりやすいかも。</li>
+        <li>$w^{(0)}$は何も観測しないうちに心の中にもっている$\theta_1$に対する確信と考える。</li>
+      </dl>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>$w^{(n-1)}$ と $w^{(n)}$ の関係</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>ベイズ更新を利用することで以下の関係が得られる。</li>
+        <ul>
+          <li class="mid-spacer">$z_1$のとき: $w^{(n)} = \frac{w^{(n-1)} p_{11}}{w^{(n-1)} p_{11} + (1 - w^{(n-1)})p_{21}}$</li>
+          <li class="mid-spacer">$z_2$のとき: $w^{(n)} = \frac{w^{(n-1)} p_{12}}{w^{(n-1)} p_{12} + (1 - w^{(n-1)})p_{22}}$</li>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>情報量とロジスティック曲線</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>一般に $w^{(n)}$ は以下のように表すことができる。</li>
+        <div>
+        $w^{(n)} = \frac{1}{1 + b \exp(-L_n)}$
+        </div>
+        <div class="mid-spacer">
+        ただし、
+          <div class="mid-spacer">
+            <div>
+            $b = \frac{1 - w^{(0)}}{w^{(0)}}$<br>
+            </div>
+            <div class="mid-spacer">
+            $L_n = (\text{$z_1$の回数}) \log \frac{p_{11}}{p_{21}} + (\text{$z_2$の回数}) \log \frac{p_{12}}{p_{22}}$
+            </div>
+          </div>
+        </div>
+        <li class="mid-spacer">数学的帰納法で証明するのが比較的簡単。エレガントな証明を求む。</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>情報量とロジスティック曲線</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <div class="large-spacer">
+        $w^{(n)} = \frac{1}{1 + b \exp(-L_n)}$
+        </div>
+        <ul>
+          <li>（´-`）.。｡oｏＯ○◯（この関数どこかで見たような・・・）</li>
+        </ul>
+        <div style="text-align:center;">
+          <img src="images/logistic.png" style="height:250px;width:auto;" alt="ロジスティック曲線"><br>
+          <strong>ロジスティック曲線</strong>
+       </div>
+     </ul>
+     <footer class="source">p.54 図3.4より引用</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>情報量とロジスティック曲線</h2>
+    </hgroup>
+    <article>
+      <div class="mid-spacer">
+      $L_n = (\text{$z_1$の回数}) \log \frac{p_{11}}{p_{21}} + (\text{$z_2$の回数}) \log \frac{p_{12}}{p_{22}}$
+      </div>
+      <ul>
+        <li>$L_n = (\text{$z_1$の回数}) (\text{1回あたりの情報量}) + (\text{$z_2$の回数}) (\text{1回あたりの情報量})$の形をとる。</li>
+      </ul>
+      <div style="text-align:center;">
+        <img src="images/logistic.png" style="height:150px;width:auto;" alt="ロジスティック曲線"><br>
+        <img src="images/ln.png" style="margin-top:20px;height:120px;width:auto;" alt="情報量"><br>
+      </div>
+      <footer class="source">p.54 図3.4、および、p.56 図3.5より引用</footer>
+    </article>
+  </slide>
 
   <slide>
     <hgroup>
       <h2>まとめ</h2>
     </hgroup>
     <article>
-      <ul>
-        <li>「ベイズの定理」の前準備として、条件付き確率をおさらいしました。</li>
-        <li>直感に反する場合があるので慣れが必要ですね。</li>
+      <ul class="build">
+        <li>入門ベイズ統計 第3章「社会的リスクと決定」を見ていきました。</li>
+        <li>ちなみに3.3の「羊飼の少年とオオカミ」はシミュレーション実験で試している人が多いようですね。</li>
+        <ul>
+          <li><a href="http://blog.hackingisbelieving.org/2009/08/blog-post.html">Hacking is believing: !元ネタ</a></li>
+          <li><a href="http://sourceforge.jp/projects/fmu/wiki/%E3%82%AA%E3%82%AA%E3%82%AB%E3%83%9F%E5%B0%91%E5%B9%B4">fmus Wiki: オオカミ少年</a></li>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+ 
+  <slide class="backdrop"></slide>
+
+  <slide>
+    <article class="flexbox vleft">
+      <h2>補足</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>式(3.3.5)〜式(3.3.7)の証明</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>数学的帰納法を用いて証明する。</li>
+        <li class="mid-spacer">(i) $n = 1$のとき</li>
+        <ul>
+          <li>$z_1$のとき:<br> $w^{(1)} = \frac{w^{(0)} p_{11}}{w^{(0)} p_{11} + (1 - w^{(0)})p_{21}} = \frac{1}{1 + \frac{1 - w^{(0)}}{w^{(0)}} \frac{p_{21}}{p_{11}}} =  \frac{1}{1 + \underbrace{\frac{1 - w^{(0)}}{w^{(0)}}}_{= b} \exp(- \underbrace{ \log \frac{p_{11}}{p_{21}}}_{= L_1})}$</li>
+          <li>$z_2$のとき:<br> $w^{(1)} = \frac{w^{(0)} p_{12}}{w^{(0)} p_{12} + (1 - w^{(0)})p_{22}} = \frac{1}{1 + \underbrace{\frac{1 - w^{(0)}}{w^{(0)}}}_{= b} \exp(- \underbrace{\log \frac{p_{12}}{p_{22}}}_{= L_1})}$</li>
+          <div>となり成立する。</div>
+        </ul>
+        <li class="mid-spacer">(ii) $n = k$のときに成立すると仮定すると、</li>
       </ul>
     </article>
   </slide>
 
-
-  <slide class="backdrop"></slide>
-
+  <slide>
+    <hgroup>
+      <h2>式(3.3.5)〜式(3.3.7)の証明の続き</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li class="mid-spacer">(iii) $n = k + 1$のとき</li>
+        <ul>
+          <li>$z_1$のとき:</li>
+          <div>
+          $w^{(k+1)} = \frac{w^{(k)} p_{11}}{w^{(k)} p_{11} + (1 - w^{(k)}) p_{21}} = \frac{1}{1 + \frac{1-w^{(k)}}{w^{(k)}} \exp(- \log \frac{p_{11}}{p_{21}}) }$
+          </div>
+          <div class="large-spacer">
+          また、$\frac{1-w^{(k)}}{w^{(k)}} = \frac{1 - \frac{1}{1 + b \exp(- L_n)}}{\frac{1}{1 + b \exp(-L_n)}} = b \exp(-L_n)$
+          </div>
+          <div class="large-spacer">
+          したがって、$w^{(k+1)} = \frac{1}{1 + b \exp(- (\underbrace{L_n + \log \frac{p_{11}}{p_{21}}}_{= L_{n+1}}))}$
+          </div>
+          <li>$z_2$のときも$z_1$と同様に示すことができるため省略する。以上より、式(3.3.5)〜式(3.3.7)が成立することが証明された。
+        </ul>
+      </ul>
+    </article>
+  </slide>
 </slides>
 
 <script>
