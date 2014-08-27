@@ -80,61 +80,22 @@ slides > slide {
   text-align: center;
 }
 
-.gray-out {
-  color: #9e9191;
+.color-bro {
+  color: #ff773e;
 }
 
-.frame-border {
-  border: 1px solid #000;
-  padding: 10px;
+.color-aya {
+  color: #dd0000;
 }
 
-.my-note {
-  font-size: 22px;
-  padding-top: 3px;
-  padding-bottom: 10px;
+.color-green-tea {
+  color: #00aa00;
 }
 
-$my-td-em: 2px solid #f00;
-
-.em-border {
-  border: $my-td-em;
+.color-teacher {
+  color: #87ceeb;
 }
 
-.em-border-t {
-  border-right: $my-td-em;
-  border-left: $my-td-em;
-  border-bottom: $my-td-em;
-}
-
-.em-border-r {
-  border-top: $my-td-em;
-  border-left: $my-td-em;
-  border-bottom: $my-td-em;
-}
-
-.em-border-b {
-  border-top: $my-td-em;
-  border-left: $my-td-em;
-  border-right: $my-td-em;
-}
-
-.em-border-l {
-  border-top: $my-td-em;
-  border-right: $my-td-em;
-  border-bottom: $my-td-em;
-}
-
-.em-border-tb {
-  border-right: $my-td-em;
-  border-left: $my-td-em;
-}
-
-.em-border-rl {
-  border-top: $my-td-em;
-  border-bottom: $my-td-em;
-}
-
-.table-collapse {
-  border-collapse: collapse;
+.color-ken {
+  color: #00ff00; 
 }

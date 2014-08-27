@@ -1,11 +1,11 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: '入門ベイズ統計',
-    subtitle: '第3章 社会的リスクと決定',
+    title: '条件付き確率事始め',
+    //subtitle: 'Subtitle Goes Here',
     eventInfo: {
       title: 'ベイズ統計読書会',
-      date: '08/28/2014'
+      date: '7/24/2014'
     },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
