@@ -1,7 +1,7 @@
 require.config({
   paths: {
     // Note the `delayStartupUntil=configured` parameter
-    mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AM-MML_HTMLorMML&amp;delayStartupUntil=configured',
+    mathjax: 'http://cdnjs.cloudflare.com/mathjax/latest/MathJax.js?config=TeX-AM-MML_HTMLorMML&amp;delayStartupUntil=configured',
     jquery: 'jquery-2.1.1.min'
   },
   shim: {
